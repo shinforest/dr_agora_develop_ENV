@@ -1,0 +1,29 @@
+version: "2"
+
+services:
+  mysql:
+    container_name: test-mysql
+    image: mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: 'sample-mysql-db'
+      MYSQL_USER: "root"
+    restart: 'always'
+    expose:
+      - '3306'
+    ports:
+      - "3306:3306"
+    networks:
+      - app-net
+
+  app:
+    container_name: "agora-application"
+    build:
+      context: "./"
+      dockerfile: "Dockerfile"
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
