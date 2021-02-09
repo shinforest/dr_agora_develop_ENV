@@ -1,6 +1,10 @@
 FROM ubuntu:18.04
 RUN apt-get -y update \
     && apt-get -y upgrade \
+    && apt-get -y install sudo \
+    $$ apt-get -y install vim \
+    && apt-get -my apt-get install -my wget gnupg \
+    && apt-get -y install unixodbc-dev \
     && apt-get install -y locales curl python3-distutils \
     && apt-get -y install mysql-client \
     && apt-get -y install git \
